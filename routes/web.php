@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController; // Ensure this matches the actual namespace of ContactController
 
@@ -12,15 +13,15 @@ Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Ensure the namespace is correct
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+
 // Add these routes to your web.php file
+Route::get('admin/login', [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('login');
 
 // Admin Authentication Routes
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin'], function () {
     // Guest routes
-    Route::middleware('guest')->group(function () {
         Route::get('/login', [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [App\Http\Controllers\Admin\AuthController::class, 'login']);
-    });
     
     // Protected routes
     Route::middleware(['auth', 'admin'])->group(function () {
