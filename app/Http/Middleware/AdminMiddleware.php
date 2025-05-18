@@ -13,6 +13,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+    
         if (!\Illuminate\Support\Facades\Auth::check() || !\Illuminate\Support\Facades\Auth::user()->is_admin) {
             return redirect()->route('login')->with('error', 'Admin access required');
         }
