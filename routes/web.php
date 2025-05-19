@@ -17,7 +17,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 // Admin Authentication Routes
 Route::prefix('admin')->group(function () {
     // Guest routes
-    Route::get('/login', [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::get('/login', [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [App\Http\Controllers\Admin\AuthController::class, 'login']);
     
     // Protected routes
