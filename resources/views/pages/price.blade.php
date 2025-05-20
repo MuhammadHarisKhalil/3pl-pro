@@ -24,63 +24,35 @@
                 <h1 class="mb-4">Affordable Pricing Packages</h1>
             </div>
             <div class="row">
-                <div class="col-md-4 mb-5">
-                    <div class="bg-secondary">
-                        <div class="text-center p-4">
-                            <h1 class="display-4 mb-0">
-                                <small class="align-top text-muted font-weight-medium" style="font-size: 22px; line-height: 45px;">$</small>49<small class="align-bottom text-muted font-weight-medium" style="font-size: 16px; line-height: 40px;">/Mo</small>
-                            </h1>
-                        </div>
-                        <div class="bg-primary text-center p-4">
-                            <h3 class="m-0">Basic</h3>
-                        </div>
-                        <div class="d-flex flex-column align-items-center py-4">
-                            <p>HTML5 & CSS3</p>
-                            <p>Bootstrap 4</p>
-                            <p>Responsive Layout</p>
-                            <p>Compatible With All Browsers</p>
-                            <a href="#" class="btn btn-primary py-2 px-4 my-2">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="bg-secondary">
-                        <div class="text-center p-4">
-                            <h1 class="display-4 mb-0">
-                                <small class="align-top text-muted font-weight-medium" style="font-size: 22px; line-height: 45px;">$</small>99<small class="align-bottom text-muted font-weight-medium" style="font-size: 16px; line-height: 40px;">/Mo</small>
-                            </h1>
-                        </div>
-                        <div class="bg-primary text-center p-4">
-                            <h3 class="m-0">Premium</h3>
-                        </div>
-                        <div class="d-flex flex-column align-items-center py-4">
-                            <p>HTML5 & CSS3</p>
-                            <p>Bootstrap 4</p>
-                            <p>Responsive Layout</p>
-                            <p>Compatible With All Browsers</p>
-                            <a href="#" class="btn btn-primary py-2 px-4 my-2">Order Now</a>
+                @forelse(\App\Models\PricingPlan::where('is_active', true)->orderBy('display_order')->with('features')->get() as $plan)
+                    <div class="col-md-4 mb-5">
+                        <div class="bg-secondary position-relative">
+                            @if($plan->is_popular)
+                                <div class="position-absolute" style="top: -15px; left: 50%; transform: translateX(-50%);">
+                                    <span class="badge bg-danger text-white px-4 py-2">Popular</span>
+                                </div>
+                            @endif
+                            <div class="text-center p-4">
+                                <h1 class="display-4 mb-0">
+                                    <small class="align-top text-muted font-weight-medium" style="font-size: 22px; line-height: 45px;">$</small>{{ number_format($plan->price, 0) }}<small class="align-bottom text-muted font-weight-medium" style="font-size: 16px; line-height: 40px;">/{{ substr($plan->duration, 0, 2) }}</small>
+                                </h1>
+                            </div>
+                            <div class="bg-primary text-center p-4">
+                                <h3 class="m-0">{{ $plan->name }}</h3>
+                            </div>
+                            <div class="d-flex flex-column align-items-center py-4">
+                                @foreach($plan->features as $feature)
+                                    <p>{{ $feature->feature_text }}</p>
+                                @endforeach
+                                <a href="{{ route('contact') }}?plan={{ $plan->id }}" class="btn btn-primary py-2 px-4 my-2">Order Now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="bg-secondary">
-                        <div class="text-center p-4">
-                            <h1 class="display-4 mb-0">
-                                <small class="align-top text-muted font-weight-medium" style="font-size: 22px; line-height: 45px;">$</small>149<small class="align-bottom text-muted font-weight-medium" style="font-size: 16px; line-height: 40px;">/Mo</small>
-                            </h1>
-                        </div>
-                        <div class="bg-primary text-center p-4">
-                            <h3 class="m-0">Business</h3>
-                        </div>
-                        <div class="d-flex flex-column align-items-center py-4">
-                            <p>HTML5 & CSS3</p>
-                            <p>Bootstrap 4</p>
-                            <p>Responsive Layout</p>
-                            <p>Compatible With All Browsers</p>
-                            <a href="#" class="btn btn-primary py-2 px-4 my-2">Order Now</a>
-                        </div>
+                @empty
+                    <div class="col-12 text-center py-5">
+                        <p>No pricing plans available at the moment.</p>
                     </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </div>

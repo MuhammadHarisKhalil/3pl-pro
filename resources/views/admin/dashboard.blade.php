@@ -53,7 +53,6 @@
                     </div>
                 </div>
             </div>
-            {{-- Add to your admin dashboard --}}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body text-center">
@@ -62,6 +61,18 @@
                         <p class="card-text">Manage company contact details and social media links</p>
                         <a href="{{ route('admin.site-info.edit') }}" class="btn btn-primary">
                             <i class="fas fa-edit me-2"></i> Edit Information
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-tags fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Pricing Plans</h5>
+                        <p class="card-text">Manage pricing plans and features</p>
+                        <a href="{{ route('admin.pricing.index') }}" class="btn btn-primary">
+                            <i class="fas fa-edit me-2"></i> Manage Pricing
                         </a>
                     </div>
                 </div>
