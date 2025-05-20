@@ -29,6 +29,9 @@ Route::prefix('admin')->group(function () {
             
             // Contact management routes
             Route::resource('contacts', App\Http\Controllers\Admin\ContactController::class);
+             // Site Info routes
+            Route::get('/site-info', [App\Http\Controllers\Admin\SiteInfoController::class, 'edit'])->name('site-info.edit');
+            Route::put('/site-info', [App\Http\Controllers\Admin\SiteInfoController::class, 'update'])->name('site-info.update');
         });
 });
 
