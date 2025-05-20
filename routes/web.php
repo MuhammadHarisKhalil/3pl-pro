@@ -36,6 +36,9 @@ Route::prefix('admin')->group(function () {
             
             // Pricing Management
             Route::resource('pricing', App\Http\Controllers\Admin\PricingController::class);
+            
+            // Testimonial Management
+            Route::resource('testimonials', App\Http\Controllers\Admin\TestimonialController::class);
         });
 });
 

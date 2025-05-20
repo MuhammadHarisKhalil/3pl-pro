@@ -77,6 +77,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-quote-right fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Testimonials</h5>
+                        <p class="card-text">Manage client testimonials and success stories</p>
+                        <a href="{{ route('admin.testimonials.index') }}" class="btn btn-primary">
+                            <i class="fas fa-users me-2"></i> Manage Testimonials
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row mt-4">

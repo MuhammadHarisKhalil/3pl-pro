@@ -18,12 +18,14 @@ class HomeController extends Controller
 
     public function services()
     {
-        return view('pages.services');
+        $testimonials = \App\Models\Testimonial::active()->orderBy('display_order')->get();
+        return view('pages.services', compact('testimonials'));
     }
 
     public function price()
     {
-        return view('pages.price');
+        $testimonials = \App\Models\Testimonial::active()->orderBy('display_order')->get();
+        return view('pages.price', compact('testimonials'));
     }
 
     public function blog()
