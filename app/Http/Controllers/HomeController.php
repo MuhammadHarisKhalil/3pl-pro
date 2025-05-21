@@ -7,9 +7,13 @@ use App\Models\Service;
 
 class HomeController extends Controller
 {
+    /**
+     * Show the application dashboard.
+     */
     public function index()
     {
-        return view('pages.home');
+        $services = \App\Models\Service::active()->orderBy('display_order')->get();
+        return view('pages.home', compact('services'));
     }
 
     public function about()

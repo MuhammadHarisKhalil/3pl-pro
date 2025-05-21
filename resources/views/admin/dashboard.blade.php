@@ -55,6 +55,21 @@
             </div>
 
             <div class="col-md-4 mb-4">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title">Quote Requests</h6>
+                                <h2 class="card-text">{{ \App\Models\Quote::where('status', 'pending')->count() }}</h2>
+                            </div>
+                            <i class="fa fa-file-invoice-dollar fa-3x opacity-50"></i>
+                        </div>
+                        <a href="{{ route('admin.quotes.index') }}" class="btn btn-outline-dark mt-3">View All</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <i class="fas fa-info-circle fa-3x text-primary mb-3"></i>

@@ -17,6 +17,9 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 // Service Detail Route
 Route::get('/services/{service}', [App\Http\Controllers\HomeController::class, 'serviceDetail'])->name('services.detail');
 
+// Add to your web.php file outside of any groups
+Route::post('/quote', [App\Http\Controllers\QuoteController::class, 'store'])->name('quote.store');
+
 // Admin Authentication Routes
 Route::prefix('admin')->group(function () {
     // Guest routes
@@ -48,6 +51,12 @@ Route::prefix('admin')->group(function () {
             
             // User Management
             Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+            
+            // Quote Management
+            Route::get('quotes', [App\Http\Controllers\Admin\QuoteController::class, 'index'])->name('quotes.index');
+            Route::get('quotes/{quote}', [App\Http\Controllers\Admin\QuoteController::class, 'show'])->name('quotes.show');
+            Route::patch('quotes/{quote}/status', [App\Http\Controllers\Admin\QuoteController::class, 'updateStatus'])->name('quotes.update-status');
+            Route::delete('quotes/{quote}', [App\Http\Controllers\Admin\QuoteController::class, 'destroy'])->name('quotes.destroy');
         });
 });
 

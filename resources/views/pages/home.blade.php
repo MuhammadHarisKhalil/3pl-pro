@@ -88,23 +88,57 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="bg-primary py-5 px-4 px-sm-5">
-                        <form class="py-5" action="{{ route('home') }}" method="POST">
+                        <form class="py-5" action="{{ route('quote.store') }}" method="POST">
                             @csrf
+                            
+                            @if(session('success'))
+                                <div class="alert alert-success mb-4">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control border-0 p-4" placeholder="Your Name" required="required" />
+                                <input type="text" name="name" class="form-control border-0 p-4" placeholder="Your Name" required="required" value="{{ old('name') }}" />
+                                @error('name')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
+                            
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control border-0 p-4" placeholder="Your Email" required="required" />
+                                <input type="email" name="email" class="form-control border-0 p-4" placeholder="Your Email" required="required" value="{{ old('email') }}" />
+                                @error('email')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
+                            
                             <div class="form-group">
-                                <select name="service" class="custom-select border-0 px-4" style="height: 47px;">
-                                    <option selected>Select A Service</option>
-                                    <option value="1">Air Freight</option>
-                                    <option value="2">Ocean Freight</option>
-                                    <option value="3">Land Transport</option>
-                                    <option value="4">Cargo Storage</option>
+                                <input type="text" name="phone" class="form-control border-0 p-4" placeholder="Your Phone" value="{{ old('phone') }}" />
+                                @error('phone')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            
+                            <div class="form-group">
+                                <select name="service_id" class="custom-select border-0 px-4" style="height: 47px;">
+                                    <option value="">Select A Service</option>
+                                    @foreach($services ?? [] as $service)
+                                        <option value="{{ $service->id }}" {{ old('service_id') == $service->id ? 'selected' : '' }}>
+                                            {{ $service->title }}
+                                        </option>
+                                    @endforeach
                                 </select>
+                                @error('service_id')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
+                            
+                            <div class="form-group">
+                                <textarea name="message" class="form-control border-0 p-4" rows="3" placeholder="Message (optional)">{{ old('message') }}</textarea>
+                                @error('message')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            
                             <div>
                                 <button class="btn btn-dark btn-block border-0 py-3" type="submit">Get A Quote</button>
                             </div>
