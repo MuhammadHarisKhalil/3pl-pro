@@ -53,6 +53,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body text-center">
@@ -65,6 +66,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body text-center">
@@ -77,6 +79,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body text-center">
@@ -89,13 +92,55 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-truck fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Services</h5>
+                        <p class="card-text">Manage your company services</p>
+                        <a href="{{ route('admin.services.index') }}" class="btn btn-primary">
+                            <i class="fas fa-edit me-2"></i> Manage Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comment out until routes are defined -->
+            <!--
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users-cog fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">User Management</h5>
+                        <p class="card-text">Manage system users and permissions</p>
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-user-shield me-2"></i> Coming Soon
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-cog fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">System Settings</h5>
+                        <p class="card-text">Configure system settings and preferences</p>
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-sliders-h me-2"></i> Coming Soon
+                        </a>
+                    </div>
+                </div>
+            </div>
+            -->
         </div>
 
         <div class="row mt-4">
-            <div class="col-12">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Recent Contact Messages</h5>
+                        <h5 class="mb-0">Recent Contact Inquiries</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -117,13 +162,14 @@
                                             <td>{{ $contact->subject }}</td>
                                             <td>{{ $contact->created_at->format('M d, Y') }}</td>
                                             <td>
-                                                <a href="{{ route('admin.contacts.show', $contact) }}"
-                                                    class="btn btn-sm btn-info">View</a>
+                                                <a href="{{ route('admin.contacts.show', $contact) }}" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">No recent contacts</td>
+                                            <td colspan="5" class="text-center">No recent contacts found</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

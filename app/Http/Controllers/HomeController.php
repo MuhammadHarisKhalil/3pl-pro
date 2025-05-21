@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
@@ -16,10 +17,24 @@ class HomeController extends Controller
         return view('pages.about');
     }
 
+    /**
+     * Display the services page.
+     */
     public function services()
     {
-        $testimonials = \App\Models\Testimonial::active()->orderBy('display_order')->get();
-        return view('pages.services', compact('testimonials'));
+        return view('pages.services');
+    }
+
+    /**
+     * Display a specific service.
+     */
+    public function serviceDetail(Service $service)
+    {
+        if (!$service->is_active) {
+            abort(404);
+        }
+        
+        return view('pages.service-detail', compact('service'));
     }
 
     public function price()

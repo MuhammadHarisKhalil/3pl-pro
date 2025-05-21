@@ -14,6 +14,9 @@ Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+// Service Detail Route
+Route::get('/services/{service}', [App\Http\Controllers\HomeController::class, 'serviceDetail'])->name('services.detail');
+
 // Admin Authentication Routes
 Route::prefix('admin')->group(function () {
     // Guest routes
@@ -39,6 +42,12 @@ Route::prefix('admin')->group(function () {
             
             // Testimonial Management
             Route::resource('testimonials', App\Http\Controllers\Admin\TestimonialController::class);
+            
+            // Service Management
+            Route::resource('services', App\Http\Controllers\Admin\ServiceController::class);
+            
+            // User Management
+            Route::resource('users', App\Http\Controllers\Admin\UserController::class);
         });
 });
 
